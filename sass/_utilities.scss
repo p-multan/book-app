@@ -1,0 +1,52 @@
+.btn {
+  padding: 1rem 2rem;
+  border: 1px solid #00329e;
+  background: #00329e;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  margin: 0 1rem;
+
+  &:hover,
+  &:active {
+    background: #f67722;
+    border-color: #f67722;
+  }
+
+  &--passive {
+    color: #00329e;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    &:hover,
+    &:active {
+      background: #aec6f8;
+    }
+  }
+
+  &--danger {
+    background: #d30808;
+    color: white;
+    border-color: #d30808;
+
+    &:hover,
+    &:active {
+      background: #ff3217;
+      border-color: #ff3217;
+    }
+  }
+
+  &--success {
+    background: #0e7a4d;
+    color: white;
+    border-color: #0e7a4d;
+
+    &:hover,
+    &:active {
+      background: #37aa7a;
+      border-color: #37aa7a;
+    }
+  }
+}
