@@ -126,7 +126,6 @@ class UI {
   };
 
   renderNewBookElement = bookObj => {
-    console.log(bookObj);
     const newBookElement = document.createElement('li');
     newBookElement.classList.add('book-list__item');
     newBookElement.innerHTML = `
