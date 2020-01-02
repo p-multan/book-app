@@ -12,10 +12,10 @@
     <header class="header">
       <div class="header__content">
         <h1 class="header__title">My favourite books!</h1>
-        <button class="header__button">add book</button>
+        <button class="header__button" id="addBook-btn">add book</button>
       </div>
     </header>
-    <div id="backdrop"></div>
+    <div class="backdrop" id="backdrop"></div>
     <div class="modal modal--addBook" id="addBook-modal">
       <h2 class="modal__title">Add your book!</h2>
       <div class="modal__content">
@@ -40,8 +40,8 @@
         />
       </div>
       <div class="modal__buttons">
-        <button class="btn btn--passive">Cancel</button>
-        <button class="btn btn--success">Add</button>
+        <button class="btn btn--passive" id="addBook-cancelBtn">Cancel</button>
+        <button class="btn btn--success" id="addBook-confirmBtn">Add</button>
       </div>
     </div>
 
@@ -52,7 +52,7 @@
       </p>
       <div class="modal__buttons">
         <button class="btn btn--passive">No</button>
-        <button class="btn btn--success">Yes, remove this book</button>
+        <button class="btn btn--danger">Yes, remove this book</button>
       </div>
     </div>
 

@@ -1,0 +1,26 @@
+.alert {
+  position: fixed;
+  z-index: 11;
+  margin: 0 auto;
+  width: 70%;
+  max-width: 1000px;
+  padding: 2rem 4rem;
+  font-size: 2rem;
+  color: $light-color;
+  border-radius: 10px;
+  text-align: center;
+
+  &--success {
+    background: #246d24;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &--error {
+    background: #9c2e2e;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
