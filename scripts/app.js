@@ -1,10 +1,13 @@
 // Book class
 class Book {
-  constructor(id, title, coverURL, rating) {
+  constructor(id, title, author, year, coverURL, rating, comment) {
     this.id = id;
     this.title = title;
+    this.author = author;
+    this.year = year;
     this.coverURL = coverURL;
     this.rating = rating;
+    this.comment = comment;
   }
 }
 
@@ -19,7 +22,7 @@ class UI {
     this.addBookModal = document.getElementById('addBook-modal');
     this.deleteBookModal = document.getElementById('deleteBook-modal');
     this.backdrop = document.getElementById('backdrop');
-    this.userInputs = this.addBookModal.querySelectorAll('input');
+    this.userInputs = this.addBookModal.querySelectorAll('.modal__input');
     this.addBookBtn = document.getElementById('addBook-btn');
     this.confirmAddBookBtn = document.getElementById('addBook-confirmBtn');
     this.cancelAddBookBtn = document.getElementById('addBook-cancelBtn');
@@ -123,6 +126,7 @@ class UI {
   };
 
   renderNewBookElement = bookObj => {
+    console.log(bookObj);
     const newBookElement = document.createElement('li');
     newBookElement.classList.add('book-list__item');
     newBookElement.innerHTML = `
@@ -134,7 +138,9 @@ class UI {
         />
       </div>
       <div class="book-list__info">
-        <h2 class="book-list__info-title">${bookObj.title}</h2>
+        <h2 class="book-list__info-title">${bookObj.title} (${bookObj.year})</h2>
+        <h3 class="book-list__info-author">${bookObj.author}</h3>
+        <p class="book-list__info-comment">${bookObj.comment}</p>
         <p class="book-list__info-rating">${bookObj.rating}/5 stars</p>
       </div>
     `;
@@ -148,13 +154,19 @@ class UI {
 
   addBookHandler = () => {
     const titleValue = this.userInputs[0].value;
-    const coverUrlValue = this.userInputs[1].value;
-    const ratingValue = this.userInputs[2].value;
+    const authorValue = this.userInputs[1].value;
+    const yearValue = this.userInputs[2].value;
+    const coverUrlValue = this.userInputs[3].value;
+    const ratingValue = this.userInputs[4].value;
+    const commentValue = this.userInputs[5].value;
 
     if (
       titleValue.trim() === '' ||
+      authorValue.trim() === '' ||
+      yearValue.trim() === '' ||
       coverUrlValue.trim() === '' ||
       ratingValue.trim() === '' ||
+      commentValue.trim() === '' ||
       +ratingValue < 1 ||
       +ratingValue > 5
     ) {
@@ -167,8 +179,11 @@ class UI {
     const newBook = new Book(
       this.newBookId,
       titleValue,
+      authorValue,
+      yearValue,
       coverUrlValue,
-      ratingValue
+      ratingValue,
+      commentValue
     );
 
     this.books.push(newBook);

@@ -2,12 +2,18 @@
   width: 70%;
   max-width: 1000px;
   margin: 4rem auto;
-  padding: 3rem;
+  padding: 5rem 0;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  text-align: center;
 
-  &__content {
-    font-size: 3rem;
+  &__text {
+    font-size: 4rem;
+    font-weight: bold;
     text-align: center;
+  }
+
+  &__image {
+    margin-top: 5rem;
   }
 }

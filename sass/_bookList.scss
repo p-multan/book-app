@@ -25,23 +25,30 @@
   &__info {
     flex: 2;
     padding: 2rem;
-
-    &-title,
-    &-rating {
-      font-size: 3rem;
-    }
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
 
     &-title {
       color: #383838;
+      font-size: 3rem;
+    }
+
+    &-author {
+      margin-bottom: 4rem;
+    }
+
+    &-comment {
       margin-bottom: 2rem;
     }
 
     &-rating {
-      color: white;
-      display: inline;
+      color: $light-color;
+      display: inline-block;
       background: #f67722;
       padding: 1rem 2rem;
       border-radius: 15px;
+      align-self: flex-start;
     }
   }
 }
