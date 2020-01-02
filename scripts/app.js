@@ -25,6 +25,7 @@ class UI {
     this.cancelAddBookBtn = document.getElementById('addBook-cancelBtn');
 
     // Event Listeners
+    document.addEventListener('DOMContentLoaded', this.setUI);
     this.addBookBtn.addEventListener(
       'click',
       this.toggleModal.bind(null, this.addBookModal)
@@ -33,6 +34,20 @@ class UI {
     this.confirmAddBookBtn.addEventListener('click', this.addBookHandler);
     this.cancelAddBookBtn.addEventListener('click', this.cancelAddBookHandler);
   }
+
+  setUI = () => {
+    this.books = Store.getBooks();
+    for (const book of this.books) {
+      this.renderNewBookElement(book);
+    }
+    this.handleEntryText();
+
+    if (!this.books[this.books.length - 1]) {
+      this.newBookId = 0;
+    } else {
+      this.newBookId = this.books[this.books.length - 1].id + 1;
+    }
+  };
 
   handleEntryText = () => {
     if (this.books.length === 0) {
@@ -83,6 +98,7 @@ class UI {
     let bookIndex = this.books.findIndex(book => book.id === bookId);
     this.bookList.children[bookIndex].remove();
     this.books = this.books.filter(book => book.id !== bookId);
+    Store.removeBook(bookId);
     this.showAlert('Book was successfully removed from your list!', 'success');
     this.toggleModal.call(null, this.deleteBookModal);
     this.handleEntryText();
@@ -156,6 +172,7 @@ class UI {
     );
 
     this.books.push(newBook);
+    Store.addBook(newBook);
     this.renderNewBookElement(newBook);
     this.toggleModal.call(null, this.addBookModal);
     this.showAlert('New book was successfully added to your list!', 'success');
@@ -167,6 +184,43 @@ class UI {
   cancelAddBookHandler = () => {
     this.toggleModal.call(null, this.addBookModal);
     this.clearBookInputs();
+  };
+}
+
+// Local storage class
+class Store {
+  static getBooks = () => {
+    let books;
+    if (localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem('books'));
+    }
+    return books;
+  };
+
+  static displayBooks = () => {
+    const books = Store.getBooks();
+    ui.setBooks(books);
+
+    for (const book of books) {
+      const ui = new UI();
+      ui.renderNewBookElement(book);
+    }
+    ui.handleEntryText();
+  };
+
+  static addBook = newBook => {
+    const books = Store.getBooks();
+    books.push(newBook);
+    localStorage.setItem('books', JSON.stringify(books));
+  };
+
+  static removeBook = bookId => {
+    let books = Store.getBooks();
+
+    books = books.filter(book => book.id !== bookId);
+    localStorage.setItem('books', JSON.stringify(books));
   };
 }
 
